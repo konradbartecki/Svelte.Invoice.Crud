@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Me.Bartecki.InvoiceApp.Model
 {
@@ -6,6 +7,9 @@ namespace Me.Bartecki.InvoiceApp.Model
     {
         [Key]
         public int Id { get; set; }
+        [ForeignKey("Invoice")]
+        public int InvoiceId { get; set; }
+        public virtual Invoice Invoice { get; set; }
         public string ItemName { get; set; }       
         public string UnitName { get; set; }       
         public decimal UnitPrice { get; set; }

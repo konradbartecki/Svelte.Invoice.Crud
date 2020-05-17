@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './invoice/invoice.home.component';
+import { InvoiceEditComponent } from './invoice/invoice.edit.component';
 import { CounterComponent } from './counter/counter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -44,6 +45,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { InvoiceEditComponent } from './invoice/invoice.edit.component';
 
 
 @NgModule({
@@ -52,13 +54,19 @@ import { MatTreeModule } from '@angular/material/tree';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
+    InvoiceEditComponent
   ],
+  //entryComponents: [
+  //  EditDialogComponent
+  //],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'invoices', pathMatch: 'full' },
+      { path: 'invoices', component: HomeComponent, pathMatch: 'full' },
+      { path: 'invoices/edit/:id', component: InvoiceEditComponent },     
       { path: 'counter', component: CounterComponent }
     ]),
     BrowserAnimationsModule,

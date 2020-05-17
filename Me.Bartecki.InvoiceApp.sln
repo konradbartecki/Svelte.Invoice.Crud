@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.Bartecki.InvoiceApp.Web", "Me.Bartecki.InvoiceApp.Web\Me.Bartecki.InvoiceApp.Web.csproj", "{A8463973-F7EA-4866-9C6B-C1C51263AAC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Me.Bartecki.InvoiceApp.Web", "Me.Bartecki.InvoiceApp.Web\Me.Bartecki.InvoiceApp.Web.csproj", "{A8463973-F7EA-4866-9C6B-C1C51263AAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.Bartecki.InvoiceApp.Model", "Me.Bartecki.InvoiceApp.Model\Me.Bartecki.InvoiceApp.Model.csproj", "{FF5ABBBA-E53F-4262-ABF6-4322456B0E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Me.Bartecki.InvoiceApp.Model", "Me.Bartecki.InvoiceApp.Model\Me.Bartecki.InvoiceApp.Model.csproj", "{FF5ABBBA-E53F-4262-ABF6-4322456B0E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.Bartecki.InvoiceApp.Infrastructure", "Me.Bartecki.InvoiceApp.Infrastructure\Me.Bartecki.InvoiceApp.Infrastructure.csproj", "{3071FA52-52A8-4B50-B7F8-5ADA39D622B6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.Bartecki.InvoiceApp.Domain", "Me.Bartecki.InvoiceApp.Domain\Me.Bartecki.InvoiceApp.Domain.csproj", "{57ECFD75-9E44-479D-B1D9-AEE4D1D36F32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Me.Bartecki.InvoiceApp.Svelte", "Me.Bartecki.InvoiceApp.Svelte\Me.Bartecki.InvoiceApp.Svelte.csproj", "{A633A263-AB9A-4738-850F-B1C4AB8EE553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +23,10 @@ Global
 		{FF5ABBBA-E53F-4262-ABF6-4322456B0E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF5ABBBA-E53F-4262-ABF6-4322456B0E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF5ABBBA-E53F-4262-ABF6-4322456B0E8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3071FA52-52A8-4B50-B7F8-5ADA39D622B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3071FA52-52A8-4B50-B7F8-5ADA39D622B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3071FA52-52A8-4B50-B7F8-5ADA39D622B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3071FA52-52A8-4B50-B7F8-5ADA39D622B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57ECFD75-9E44-479D-B1D9-AEE4D1D36F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57ECFD75-9E44-479D-B1D9-AEE4D1D36F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57ECFD75-9E44-479D-B1D9-AEE4D1D36F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57ECFD75-9E44-479D-B1D9-AEE4D1D36F32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A633A263-AB9A-4738-850F-B1C4AB8EE553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A633A263-AB9A-4738-850F-B1C4AB8EE553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A633A263-AB9A-4738-850F-B1C4AB8EE553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A633A263-AB9A-4738-850F-B1C4AB8EE553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

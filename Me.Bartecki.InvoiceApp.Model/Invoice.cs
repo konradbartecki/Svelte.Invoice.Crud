@@ -18,7 +18,7 @@ namespace Me.Bartecki.InvoiceApp.Model
         /// This property would be in a separate DTO class
         /// </summary>
         [NotMapped]
-        public string ClientName => Client.FullName;
+        public string ClientName => Client?.FullName ?? string.Empty;
         public virtual Client Client { get; set; }
         public DateTime SellDate { get; set; }
         public DateTime IssueDate { get; set; }

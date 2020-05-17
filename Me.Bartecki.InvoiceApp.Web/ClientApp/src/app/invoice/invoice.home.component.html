@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="title-toolbar">
   <span>Invoices</span>
   <span class="fill-remaining-space"></span>
     <button mat-mini-fab>
@@ -35,7 +35,8 @@
   </ng-container>
   <ng-container matColumnDef="isPaid">
     <th mat-header-cell *matHeaderCellDef> Paid </th>
-    <td mat-cell *matCellDef="let invoice"> {{ invoice.isPaid}}</td>
+    <!--TODO: Fix clickAction noop or introduce icon-->
+    <td mat-cell *matCellDef="let invoice"><mat-checkbox checked={{invoice.isPaid}} clickAction="noop" disabled></mat-checkbox></td>
   </ng-container>
   <ng-container matColumnDef="netTotal">
     <th mat-header-cell *matHeaderCellDef> Net total</th>
@@ -48,10 +49,12 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let invoice" class="invoice-button-row">
-      <button mat-flat-button color="primary" (click)="openEditDialog(invoice)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-flat-button color="warn" (click)="openDeleteDialog(invoice.id)">
+      <a [routerLink]="['/invoices/edit', invoice.id]">
+        <button mat-flat-button color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </a>
+      <button mat-flat-button color="warn" (click)="openDeleteDialog(invoice)">
         <mat-icon>delete_forever</mat-icon>
       </button>
     </td>
