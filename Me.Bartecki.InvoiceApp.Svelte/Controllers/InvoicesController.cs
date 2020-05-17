@@ -111,10 +111,10 @@ namespace Me.Bartecki.InvoiceApp.Web.Controllers
             invoice.Year = invoice.IssueDate.Year;
             invoice.Month = invoice.IssueDate.Month;
             invoice.NetTotal = invoice.InvoiceRows.Sum(x => x.UnitPrice * x.Amount);
-            invoice.GrossTotal = invoice.InvoiceRows.Sum(x =>
-                x.UnitPrice
-                + x.UnitPrice * (x.VatRatePercent / 100) //add VAT
-                * x.Amount);
+            invoice.GrossTotal = invoice
+                .InvoiceRows
+                .Select(x => (x.UnitPrice + x.UnitPrice * x.VatRatePercent / 100) * x.Amount)
+                .Sum();
         }
 
         private bool InvoiceExists(int id)

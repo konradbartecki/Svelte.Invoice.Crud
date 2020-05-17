@@ -2,6 +2,7 @@
   export let editedItem;
 
   import InvoiceRowEditor from "./InvoiceRowEditor.svelte";
+  import ClientSelector from "./ClientSelector.svelte";
 
   import { onMount } from "svelte";
 
@@ -43,7 +44,7 @@
         headers: {
           'Content-Type': 'application/json'
           }})
-      .then(dispatchCancel()));      
+      .then(function(response) {dispatchCancel()}));      
     isSaving = false;
   }
 </script>
@@ -85,6 +86,7 @@
           disabled />
       </div>
     </div>
+    <!-- <ClientSelector/> -->
     <div class="field">
       <label class="label">Client</label>
       <div class="control">
@@ -108,6 +110,18 @@
       </div>
     </div>
     <div class="field">
+      <label class="label">Payment type</label>
+      <div class="control">
+      <div class="select">
+        <select bind:value={editedItem.paymentType}>
+          <option value="1">Cash</option>
+          <option value="2">Bank transfer</option>
+          <option value="3">Card payment</option>
+        </select>
+      </div>
+      </div>
+    </div>
+    <div class="field">
       <label class="label">Pay time (days)</label>
       <div class="control">
         <input class="input" type="text" bind:value={editedItem.paytime} />
@@ -116,7 +130,7 @@
     <div class="field">
       <div class="control">
         <label class="checkbox">
-          <input type="checkbox" bind:value={editedItem.isPaid} />
+          <input type="checkbox" bind:checked={editedItem.isPaid} />
           Is paid
         </label>
       </div>

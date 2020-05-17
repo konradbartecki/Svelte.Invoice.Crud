@@ -21,7 +21,11 @@ namespace AspNetSvelteSpa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddNewtonsoftJson(x => x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore);
+            services.AddControllersWithViews().AddNewtonsoftJson(x =>
+            {
+                x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                x.SerializerSettings.FloatParseHandling = Newtonsoft.Json.FloatParseHandling.Decimal;
+            }) ;
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });

@@ -21,11 +21,11 @@
     sellDate: new Date().toISOString().split("T")[0],
     issueDate: new Date().toISOString().split("T")[0],
     paytime: 14,
-    isPaid: false    
+    isPaid: false
   };
   let isSaving = false;
 
-  onMount(async () => {  
+  onMount(async () => {
     sellDate = new Date().toISOString().split("T")[0];
     issueDate = new Date().toISOString().split("T")[0];
     invoiceRowEditor.addNewRow();
@@ -36,14 +36,15 @@
     editedItem.sellDate = sellDate;
     editedItem.issueDate = issueDate;
     editedItem.invoiceRows = rows;
-    await fetch(`/api/invoices/`, 
-      { 
-        method: 'POST', 
-        body: JSON.stringify(editedItem),     
-        headers: {
-          'Content-Type': 'application/json'
-          }})
-      .then(function(response){ dispatchDone() });      
+    await fetch(`/api/invoices/`, {
+      method: "POST",
+      body: JSON.stringify(editedItem),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function(response) {
+      dispatchDone();
+    });
     isSaving = false;
   }
 </script>
@@ -59,21 +60,21 @@
           <span>Back</span>
         </button>
         Invoices
-        <button class="button is-rounded is-link is-pulled-right" on:click={submitSave}>
-         <span>Save</span>
+        <button
+          class="button is-rounded is-link is-pulled-right"
+          on:click={submitSave}>
+          <span>Save</span>
           <span class="icon is-small">
             <i class="fas fa-save" />
-          </span>          
+          </span>
         </button>
       </h1>
-      <h2 class="subtitle">
-        Creating new invoice
-      </h2>
+      <h2 class="subtitle">Creating new invoice</h2>
     </div>
   </div>
 </section>
 <section>
-  <div class="container is-fluid">  
+  <div class="container is-fluid">
     <div class="field">
       <label class="label">Client</label>
       <div class="control">
@@ -97,6 +98,18 @@
       </div>
     </div>
     <div class="field">
+      <label class="label">Payment type</label>
+      <div class="control">
+        <div class="select">
+          <select bind:value={editedItem.paymentType}>
+            <option value="1">Cash</option>
+            <option value="2">Bank transfer</option>
+            <option value="3">Card payment</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
       <label class="label">Pay time (days)</label>
       <div class="control">
         <input class="input" type="text" bind:value={editedItem.paytime} />
@@ -105,11 +118,14 @@
     <div class="field">
       <div class="control">
         <label class="checkbox">
-          <input type="checkbox" bind:value={editedItem.isPaid} />
+          <input type="checkbox" bind:checked={editedItem.isPaid} />
           Is paid
         </label>
       </div>
     </div>
-    <InvoiceRowEditor bind:this={invoiceRowEditor} editedInvoiceId={0} bind:rows={rows}/>
+    <InvoiceRowEditor
+      bind:this={invoiceRowEditor}
+      editedInvoiceId={0}
+      bind:rows />
   </div>
 </section>

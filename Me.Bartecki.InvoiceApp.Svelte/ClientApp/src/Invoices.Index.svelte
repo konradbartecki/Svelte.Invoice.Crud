@@ -5,7 +5,7 @@
 
   let invoices;
 
-  export async function Refresh(){
+  export async function Refresh() {
     invoices = await fetch(`/api/invoices`).then(r => r.json());
   }
 
@@ -17,26 +17,36 @@
     });
   }
   function dispatchNew() {
-      dispatch("message", {
-      type: "onInvoiceCreateStart",
+    dispatch("message", {
+      type: "onInvoiceCreateStart"
     });
   }
 
-    onMount(async () => {
+  onMount(async () => {
+    await Refresh();
+    console.log("index on mount");
+  });
+
+  async function Delete(id) {
+    await fetch(`/api/invoices/` + id, { method: "DELETE" }).then(
+      async function(response) {
         await Refresh();
-        console.log("index on mount");
-    })
+      }
+    );
+  }
 
-    async function Delete(id) {
-      await fetch(`/api/invoices/` + id, 
-      { method: 'DELETE'})
-      .then(async function(response){ await Refresh(); });      
+  function PaymentTypeToString(t) {
+    switch (t) {
+      case 1:
+        return "Cash";
+      case 2:
+        return "Bank transfer";
+      case 3:
+        return "Card payment";
+      default:
+        return "Unknown";
     }
-
-    //    afterUpdate(async () => {
-    //     await tick();
-    //     console.log("after update name:", name);
-    // })
+  }
 </script>
 
 <section class="hero is-primary is-bold">
@@ -44,11 +54,13 @@
     <div class="container">
       <h1 class="title">
         Invoices
-         <button class="button is-rounded is-link is-pulled-right" on:click={dispatchNew}>
-         <span>Add</span>
+        <button
+          class="button is-rounded is-link is-pulled-right"
+          on:click={dispatchNew}>
+          <span>Add</span>
           <span class="icon is-small">
             <i class="fas fa-plus" />
-          </span>          
+          </span>
         </button>
       </h1>
       <h2 class="subtitle">List of all invoices</h2>
@@ -79,13 +91,24 @@
             <tr>
               <td>{inv.year}/{inv.month}/{inv.id}</td>
               <td>{inv.clientName}</td>
-              <td>{inv.sellDate}</td>
-              <td>{inv.issueDate}</td>
+              <td>{new Date(inv.sellDate).toLocaleDateString('pl')}</td>
+              <td>{new Date(inv.issueDate).toLocaleDateString('pl')}</td>
               <td>{inv.paytime} days</td>
-              <td>{inv.paymentType}</td>
-              <td>{inv.isPaid}</td>
-              <td>{inv.netTotal}</td>
-              <td>{inv.grossTotal}</td>
+              <td>{PaymentTypeToString(inv.paymentType)}</td>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <label class="checkbox">
+                      <input
+                        type="checkbox"
+                        checked={inv.isPaid}
+                        onclick="return false;" />
+                    </label>
+                  </div>
+                </div>
+              </td>
+              <td>{inv.netTotal.toFixed(2)} PLN</td>
+              <td>{inv.grossTotal.toFixed(2)} PLN</td>
               <td>
                 <div class="field has-addons is-pulled-right">
                   <p class="control">
@@ -107,9 +130,9 @@
             </tr>
           {/each}
         </tbody>
-      </table>  
+      </table>
     {:else}
-      <progress class="progress is-small is-link" max="100"></progress>
+      <progress class="progress is-small is-link" max="100" />
     {/if}
   </div>
 </section>

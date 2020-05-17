@@ -74,15 +74,14 @@
               <InPlaceEditor bind:value={row.unitName} />
             </td>
             <td>
-              <InPlaceEditor bind:value={row.unitPrice} />
+              <InPlaceEditor bind:value={row.unitPrice} /> PLN
             </td>
             <td>
-              <InPlaceEditor bind:value={row.vatRatePercent} />
-              %
+              <InPlaceEditor bind:value={row.vatRatePercent} /> %
             </td>
-            <td>{row.amount * row.unitPrice}</td>
+            <td>{(row.amount * row.unitPrice).toFixed(2)} PLN</td>
             <td>
-              {row.amount * row.unitPrice + (row.amount * row.unitPrice * row.vatRatePercent) / 100}
+              {(row.amount * row.unitPrice + (row.amount * row.unitPrice * row.vatRatePercent) / 100).toFixed(2)} PLN
               <a
                 class="delete is-pulled-right"
                 on:click={() => {
