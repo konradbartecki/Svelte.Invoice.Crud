@@ -86,15 +86,11 @@
           disabled />
       </div>
     </div>
-    <!-- <ClientSelector/> -->
+
     <div class="field">
       <label class="label">Client</label>
       <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Text input"
-          bind:value={editedItem.clientName} />
+        <ClientSelector bind:selectedClientId={editedItem.clientId}/>
       </div>
     </div>
     <div class="field">

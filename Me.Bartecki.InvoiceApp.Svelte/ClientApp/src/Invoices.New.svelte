@@ -1,5 +1,6 @@
 <script>
   import InvoiceRowEditor from "./InvoiceRowEditor.svelte";
+  import ClientSelector from "./ClientSelector.svelte";
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
@@ -78,11 +79,7 @@
     <div class="field">
       <label class="label">Client</label>
       <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Text input"
-          bind:value={editedItem.clientName} />
+        <ClientSelector bind:selectedClientId={editedItem.clientId}/>
       </div>
     </div>
     <div class="field">
